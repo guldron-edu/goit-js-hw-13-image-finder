@@ -7,11 +7,9 @@ import openModal from './js/modalWindow';
 
 refs.submitForm.addEventListener('submit', () => {
   event.preventDefault();
-  getResult();
-  refs.button.classList.remove('hide');
+  fetchRequest();
 });
 
-// buttonRef.addEventListener('click', moreResults);
 refs.button.addEventListener(
   'click',
   renderService.moreResults.bind(renderService),
@@ -19,13 +17,11 @@ refs.button.addEventListener(
 
 refs.gallery.addEventListener('click', openModal);
 
-// function moreResults() {
-//   renderService.moreResults();
-// }
-
-function getResult() {
+function fetchRequest() {
   refs.gallery.innerHTML = '';
+  refs.button.classList.add('hide');
   apiService.search = refs.input.value;
   renderService.galleryLink = refs.gallery;
-  apiService.fetchRequest().then(array => renderService.showResult(array.hits));
+
+  apiService.getResult().then(array => renderService.showResult(array.hits));
 }

@@ -1,7 +1,7 @@
 import refs from './refs';
 import '@pnotify/core/dist/BrightTheme.css';
 import { defaults } from '@pnotify/core';
-import { success, error, Stack } from '@pnotify/core';
+import { success, error, notice, Stack } from '@pnotify/core';
 defaults.sticker = false;
 defaults.closer = false;
 defaults.delay = 1000;
@@ -21,10 +21,17 @@ function showNotification() {
   });
 }
 
+function lastNotification() {
+  notice({
+    text: `Больше ничего нет :(`,
+    stack: myStack,
+  });
+}
+
 function errorNotification() {
   error({
     text: `По Вашему запросу ничего не найдено.`,
     stack: myStack,
   });
 }
-export { showNotification, errorNotification };
+export { showNotification, errorNotification, lastNotification };

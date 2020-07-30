@@ -1,23 +1,41 @@
 import galleryMarkup from '../template/galleryMarkup.hbs';
 import apiService from './apiService.js';
-import { showNotification, errorNotification } from './notification';
+import {
+  showNotification,
+  errorNotification,
+  lastNotification,
+} from './notification';
+import refs from '../js/refs';
 
 export default {
   galleryRef: '',
 
-  async showResult(array) {
-    if (array.length === 1) {
+  showResult(array) {
+    if (array.length === 0) {
+      refs.submitForm.classList.remove('padding-top');
+
       errorNotification();
-    } else {
-      this.galleryRef.insertAdjacentHTML('beforeend', galleryMarkup(array));
+    }
+    if (array.length > 0 && array.length < 12) {
+      this.renderResult(array);
+      refs.button.classList.add('hide');
+      refs.submitForm.classList.add('padding-top');
+
+      lastNotification();
+    }
+    if (array.length >= 12) {
+      this.renderResult(array);
+      refs.button.classList.remove('hide');
+      refs.submitForm.classList.add('padding-top');
+
       showNotification();
     }
   },
 
   async moreResults() {
     let point = document.documentElement.offsetHeight - 50;
+    const array = await apiService.getMoreResults();
 
-    const array = await apiService.nextPage();
     await this.showResult(array.hits);
 
     window.scrollTo({
@@ -28,5 +46,9 @@ export default {
 
   set galleryLink(value) {
     this.galleryRef = value;
+  },
+
+  renderResult(array) {
+    this.galleryRef.insertAdjacentHTML('beforeend', galleryMarkup(array));
   },
 };

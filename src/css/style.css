@@ -1,22 +1,50 @@
+body {
+  margin: 0;
+  background-color: #dbe3ed;
+}
 .main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1300px;
+  max-width: 1500px;
   margin-right: auto;
   margin-left: auto;
+  padding-bottom: 50px;
+}
+.search-form {
+  padding-bottom: 50px;
+  padding-top: 25vh;
 }
 
+.padding-top {
+  padding-top: 30px;
+}
+
+.search-form > input {
+  height: 30px;
+  padding-left: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+/* .gallery + .search-form {
+  padding-top: 10px;
+} */
+
 .gallery {
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  padding-bottom: 30px;
 }
 
 .list {
   list-style: none;
   margin-right: 20px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid black;
 }
 
 .img-wrapper {
@@ -32,7 +60,31 @@
   justify-content: space-evenly;
 }
 
+.stats-item {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+.stats-item:nth-child(1) .material-icons {
+  color: #131396;
+}
+
+.stats-item:nth-child(2) .material-icons {
+  color: #10a07c;
+}
+
+.stats-item:nth-child(3) .material-icons {
+  color: #000;
+}
+.stats-item:nth-child(4) .material-icons {
+  color: #494949;
+}
+.material-icons {
+  padding-right: 7px;
+}
 .button {
+  all: unset;
   color: #fff;
   background-color: blueviolet;
   border: none;
@@ -40,11 +92,13 @@
   border-radius: 10px;
   padding-right: 20px;
   padding-left: 20px;
+  font-weight: 700;
+  box-sizing: border-box;
 }
 
 button:hover {
   color: #000;
-  background-color: #fff;
+  background-color: #dbe3ed;
   border: 2px solid blueviolet;
   cursor: pointer;
 }
@@ -55,6 +109,8 @@ button:hover {
 
 .pnotify {
   position: fixed;
+  top: 30px;
+  right: -200px;
 
   /* top: 10px; */
   /* right: 10px; */
